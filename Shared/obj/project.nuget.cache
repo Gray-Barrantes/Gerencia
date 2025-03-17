@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "0MC+DErvR+hhL8Wr9Z840Ee5miUHlFSHXsSMsG72N44nWqO9IhqyN8mewk4iviiWb/FtOElwriQU9r4oT6A/kw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\rx183\\OneDrive\\Escritorio\\Gerencia\\Gerencia\\Shared\\Gerencia.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rx183\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.18\\microsoft.windowsdesktop.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\rx183\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.18\\microsoft.netcore.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\rx183\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.18\\microsoft.aspnetcore.app.ref.7.0.18.nupkg.sha512"
+  ],
+  "logs": []
+}

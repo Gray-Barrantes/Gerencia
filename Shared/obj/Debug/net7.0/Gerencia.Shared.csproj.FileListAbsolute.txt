@@ -1,0 +1,11 @@
+C:\Users\jocin\source\repos\Gerencia\Shared\bin\Debug\net7.0\Gerencia.Shared.deps.json
+C:\Users\jocin\source\repos\Gerencia\Shared\bin\Debug\net7.0\Gerencia.Shared.dll
+C:\Users\jocin\source\repos\Gerencia\Shared\bin\Debug\net7.0\Gerencia.Shared.pdb
+C:\Users\jocin\source\repos\Gerencia\Shared\obj\Debug\net7.0\Gerencia.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jocin\source\repos\Gerencia\Shared\obj\Debug\net7.0\Gerencia.Shared.AssemblyInfoInputs.cache
+C:\Users\jocin\source\repos\Gerencia\Shared\obj\Debug\net7.0\Gerencia.Shared.AssemblyInfo.cs
+C:\Users\jocin\source\repos\Gerencia\Shared\obj\Debug\net7.0\Gerencia.Shared.csproj.CoreCompileInputs.cache
+C:\Users\jocin\source\repos\Gerencia\Shared\obj\Debug\net7.0\Gerencia.Shared.dll
+C:\Users\jocin\source\repos\Gerencia\Shared\obj\Debug\net7.0\refint\Gerencia.Shared.dll
+C:\Users\jocin\source\repos\Gerencia\Shared\obj\Debug\net7.0\Gerencia.Shared.pdb
+C:\Users\jocin\source\repos\Gerencia\Shared\obj\Debug\net7.0\ref\Gerencia.Shared.dll
