@@ -1,0 +1,85 @@
+﻿@page "/login"
+@using Gerencia.Client.Services
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+
+<h3>Iniciar Sesión</h3>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+<div>
+    <label>Email:</label>
+    <input @bind="Email" />
+</div>
+<div>
+    <label>Password:</label>
+    <input @bind="Password" type="password" />
+</div>
+
+<button @onclick="IngresarGoogle">Iniciar sesión con Google</button>
+<button @onclick="Ingresar">Iniciar sesión con Email</button>
+<button @onclick="RegistrarUsuario">Registrar</button>
+
+
+
+@code {
+    private string Email { get; set; }
+    private string Password { get; set; }
+    private string ErrorMessage { get; set; }
+
+   
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = await AuthService.GetCurrentUser();
+        if (!string.IsNullOrEmpty(user))
+        {
+            Navigation.NavigateTo("/dashboard");
+        }
+    }
+
+    private async Task Ingresar()
+    {
+        bool success = await AuthService.LoginWithEmail(Email, Password);
+        if (success)
+        {
+            Navigation.NavigateTo("/dashboard");
+        }
+        else
+        {
+            ErrorMessage = "Error al iniciar sesión";
+        }
+    }
+
+    private async Task IngresarGoogle()
+    {
+        bool success = await AuthService.LoginWithGoogle();
+        if (success)
+        {
+            Navigation.NavigateTo("/dashboard");
+        }
+        else
+        {
+            ErrorMessage = "Error al iniciar sesión con Google";
+        }
+    }
+
+    private async Task RegistrarUsuario()
+    {
+        string result = await AuthService.RegisterWithEmail(Email, Password);
+
+        if (result == "Registro exitoso")
+        {
+            Navigation.NavigateTo("/dashboard");
+        }
+        else
+        {
+            ErrorMessage = result; // Mostramos el mensaje de error en la UI
+        }
+    }
+
+}

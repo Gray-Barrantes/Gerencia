@@ -1,0 +1,23 @@
+﻿@page "/"
+@using Blazored.LocalStorage
+@inject NavigationManager Navigation
+@inject ILocalStorageService LocalStorage
+
+<PageTitle>Login</PageTitle>
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var token = await LocalStorage.GetItemAsync<string>("authToken");
+
+        if (string.IsNullOrEmpty(token))
+        {
+            Navigation.NavigateTo("/login", true);
+        }
+        else
+        {
+            Navigation.NavigateTo("/dashboard", true);
+        }
+    }
+}

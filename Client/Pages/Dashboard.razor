@@ -1,0 +1,100 @@
+﻿@page "/dashboard"
+@using Blazored.LocalStorage
+@using Gerencia.Client.Services
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+@inject FirestoreService FirestoreService
+@inject ILocalStorageService LocalStorage
+
+<h3>Gestión de Finanzas</h3>
+
+
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <p style="color:red">@ErrorMessage</p>
+}
+
+<h4>Registrar Gasto</h4>
+<div>
+    <label>Monto:</label>
+    <input @bind="MontoGasto" type="number" />
+</div>
+<div>
+    <label>Categoría:</label>
+    <input @bind="CategoriaGasto" />
+</div>
+<button @onclick="RegistrarGasto">Agregar Gasto</button>
+
+<h4>Registrar Ingreso</h4>
+<div>
+    <label>Monto:</label>
+    <input @bind="MontoIngreso" type="number" />
+</div>
+<div>
+    <label>Fuente:</label>
+    <input @bind="FuenteIngreso" />
+</div>
+<button @onclick="RegistrarIngreso">Agregar Ingreso</button>
+
+<button @onclick="CerrarSesion">Cerrar Sesión</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var user = await AuthService.GetCurrentUser();
+        if (string.IsNullOrEmpty(user))
+        {
+            Navigation.NavigateTo("/login");
+        }
+    }
+
+    private async Task CerrarSesion()
+    {
+        await AuthService.Logout();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private double MontoGasto { get; set; }
+    private string CategoriaGasto { get; set; }
+    private double MontoIngreso { get; set; }
+    private string FuenteIngreso { get; set; }
+    private string ErrorMessage { get; set; }
+
+    private async Task RegistrarGasto()
+    {
+        var userId = await LocalStorage.GetItemAsync<string>("authToken");
+        if (string.IsNullOrEmpty(userId))
+        {
+            ErrorMessage = "No estás autenticado.";
+            return;
+        }
+
+        bool resultado = await FirestoreService.AgregarGasto(userId, MontoGasto, CategoriaGasto, null);
+        if (!resultado)
+        {
+            ErrorMessage = "Error al registrar gasto.";
+        }
+    }
+
+    private async Task RegistrarIngreso()
+    {
+        var userId = await LocalStorage.GetItemAsync<string>("authToken");
+        if (string.IsNullOrEmpty(userId))
+        {
+            ErrorMessage = "No estás autenticado.";
+            return;
+        }
+
+        bool resultado = await FirestoreService.AgregarIngreso(userId, MontoIngreso, FuenteIngreso, null);
+        if (!resultado)
+        {
+            ErrorMessage = "Error al registrar ingreso.";
+        }
+    }
+}
+
+
+
+
